@@ -1,0 +1,34 @@
+# Entornos virtuales
+venv/
+env/
+ENV/
+.env
+
+# Archivos de caché de Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribución / empaquetado
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Variables de entorno y configuración local
+.env
+.venv
+
+# VS Code
+.vscode/
