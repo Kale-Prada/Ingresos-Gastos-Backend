@@ -1,3 +1,9 @@
+
+# Varios 
+.DS_Store
+*.exe
+
+
 # Entornos virtuales
 venv/
 env/
