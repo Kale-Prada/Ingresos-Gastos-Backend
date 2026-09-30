@@ -9,15 +9,6 @@ from consultas import *
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
 
-#Declaro calse para usar libreria de pydantic: BaseModel 
-#Se usa para pasar el formato como "Body" y sea interpretado
-#en Yaak, por ejemplo. 
-class ModelMovimiento(BaseModel):
-    date:str
-    concept:str
-    quantity:float
-
-
 #Declarar variable - objeto de la clase FastAPI llamada "app" y la igualamos a la clase FasAPI. 
 app = FastAPI()
 
@@ -29,6 +20,21 @@ app.add_middleware(
     allow_methods=["*"],      # Permite todos los métodos HTTP (GET, POST, PUT, etc.)
     allow_headers=["*"],      # Permite todas las cabeceras HTTP
 )
+
+
+
+
+#Declaro calse para usar libreria de pydantic: BaseModel 
+#Se usa para pasar el formato como "Body" y sea interpretado
+#en Yaak, por ejemplo. 
+class ModelMovimiento(BaseModel):
+    date:str
+    concept:str
+    quantity:float
+
+
+
+
 
 
 #Detrás de ese objeto creamos rutas que vayamos a usar
