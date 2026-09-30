@@ -1,8 +1,11 @@
 #Este archivo es la capa donde están las conexiones a la BBDD
+#Separamos la lógica MVC (Modelo-Vista-Controlador)
+#Modelo (M): Maneja los datos, la base de datos y la lógica de negocio-programa
 
 from conexion import Conexion
 import sqlite3
 
+#Método "formato" Recibe una fila y la va recorriendo. Devuelve todos los valor con "fetchall"
 
 def formato(respuesta):
     """
@@ -80,6 +83,7 @@ def delete_data(id:int):
     conexionDelete.con.close()    
 
 #Mostrar ingresos 
+#Al recibir solo un dato se llama con "fetchone".Solo queremos el total de ingresos
 def mostrar_ingresos():
     """
     Función para consultar a BBDD SQlite los ingresos de la tabla "movimiento" en
@@ -87,13 +91,20 @@ def mostrar_ingresos():
     """
     #Suma los ingresos con SUM
     conexionIngresos = Conexion('SELECT sum(quantity) from movimiento WHERE quantity > 0;')
-    respuesta = conexionIngresos.res
-    resp = formato(respuesta)
+    respuesta = conexionIngresos.res.fetchone()
     #Importante cerrar la conexión a la BBDD
     conexionIngresos.con.close() 
+    if respuesta and respuesta[0] is not None:
+        valor = respuesta [0]
+    else:
+        valor = 0
+    return str(valor)
+    
+   
     return resp
 
 #Mostrar gastos 
+#Al recibir solo un dato se llama con "fetchone". Solo queremos el total de gastos
 def mostrar_gastos():
     """
     Función para consultar a BBDD SQlite los gastos de la tabla "movimiento" en
@@ -101,8 +112,11 @@ def mostrar_gastos():
     """
     #Suma los gastos con SUM
     conexionGastos = Conexion('SELECT sum(quantity) from movimiento WHERE quantity < 0;')
-    respuesta = conexionGastos.res
-    resp = formato(respuesta)
-    #Importante cerrar la conexión a la BBDD
+    respuesta = conexionGastos.res.fetchone()
+    #Cierro la conexión a la base de datos
     conexionGastos.con.close() 
-    return resp
+    if respuesta and respuesta[0] is not None:
+        valor = respuesta[0]
+    else:
+        valor = 0
+    return str(valor)

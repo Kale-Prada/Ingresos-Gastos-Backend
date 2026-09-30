@@ -1,4 +1,9 @@
 #Trabajamos nuestras rutas con FastAPI 
+#Separamos la lógica MVC (Modelo-Vista-Controlador)
+# Vista Controlador (C): Recibe las peticiones del usuario, pide los datos al modelo y 
+# decide qué vista mostrar
+
+
 #Activo el entorno 
 from fastapi import FastAPI
 from consultas import *

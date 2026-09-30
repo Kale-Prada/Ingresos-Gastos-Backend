@@ -1,3 +1,6 @@
+#Separamos la lógica MVC (Modelo-Vista-Controlador)
+#Clase "Conexion" para conectarnos a la base de datos
+
 import sqlite3
 
 class Conexion:
