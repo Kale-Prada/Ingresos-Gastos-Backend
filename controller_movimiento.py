@@ -3,11 +3,11 @@
 # Vista Controlador (C): Recibe las peticiones del usuario, pide los datos al modelo y 
 # decide qué vista mostrar
 
-
 #Activo el entorno 
 from fastapi import FastAPI
 from consultas import *
 from pydantic import BaseModel
+from fastapi.middleware.cors import CORSMiddleware
 
 #Declaro calse para usar libreria de pydantic: BaseModel 
 #Se usa para pasar el formato como "Body" y sea interpretado
@@ -20,6 +20,16 @@ class ModelMovimiento(BaseModel):
 
 #Declarar variable - objeto de la clase FastAPI llamada "app" y la igualamos a la clase FasAPI. 
 app = FastAPI()
+
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],      # Permite cualquier origen (dominio)
+    allow_credentials=False,  # ¡ATENCIÓN! Debe ser False si usas "" en origins
+    allow_methods=["*"],      # Permite todos los métodos HTTP (GET, POST, PUT, etc.)
+    allow_headers=["*"],      # Permite todas las cabeceras HTTP
+)
+
 
 #Detrás de ese objeto creamos rutas que vayamos a usar
 
